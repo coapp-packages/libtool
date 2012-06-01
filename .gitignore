@@ -36,10 +36,10 @@ autom4te.cache
 clibtool.cfg
 commit
 config-h.in
-config.*
+/config.*
 configure
 conftest*
-libtool
+/libtool
 libtool-*.tar.bz2
 libtool-*.tar.gz
 libtool-*.tar.lzma
