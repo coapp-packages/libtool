@@ -1,0 +1,49 @@
+@import "version.inc";
+@import "outercurve.inc";
+
+package {
+    name: "libltdl-dev-common";
+    version: "${package-version}";
+    arch : "any";
+
+    display-name: "libltdl Dev Common";
+    location: "http://coapp.org/repository/${OutputFilename}";
+
+    feed: "http://coapp.org/repository/packages.atom.xml";
+    publisher: "CoApp Project";
+}
+
+license[LGPL2] {
+	license: "..\libltdl\COPYING.LIB";
+    license-url: "http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html";
+    license-type: "LGPL";
+}
+
+metadata {  
+    summary: "libltdl";
+    description: @"Libltdl provides a consistent interface for dynamically loading libraries on various platforms.";
+    author-version : "${author-version}";
+    bug-tracker: "https://github.com/coapp-packages/libtool/issues";
+    stability : "0";
+    licenses : {
+        LGPL2
+    };
+}
+
+developer-library[libltdl] {
+    headers: { 
+        headers
+    };
+}
+
+files[headers] {
+    root: @"..\libltdl";
+    include: {
+        @"ltdl.h",
+		@"libltdl\lt_system.h",
+		@"libltdl\lt_error.h",
+		@"libltdl\lt_dlloader.h",
+    };
+
+    trim-path:none;
+}
