@@ -1,0 +1,34 @@
+@import "version.inc";
+
+#product-info  {
+    product-name: "libtool";
+    version: "${package-version}";
+    original-source-location: "git://git.savannah.gnu.org/libtool.git";
+    original-source-website: "http://www.gnu.org/software/libtool/";
+    license: "GPL 2";
+    packager: "Vincent Povirk <madewokherd@gmail.com>";
+}
+
+x86 {
+	platform: x86;
+	compiler: vc10;
+
+	build-command: @"
+		if ""${BUILT}"" equ ""true"" goto end
+		msbuild /p:Platform=Win32 /p:Configuration=Release COPKG\libtool\libtool.sln
+:end
+	";
+
+	targets: {
+		@"COPKG\libtool\Release\libltdl.dll",
+		@"COPKG\libtool\Release\libltdl.lib",
+	};
+
+	clean-command: @"
+		msbuild /p:Platform=Win32 /p:Configuration=Release COPKG\libtool\libtool.sln /t:Clean
+	";
+}
+
+release {
+	uses: x86;
+}
