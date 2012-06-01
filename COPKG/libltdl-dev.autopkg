@@ -1,0 +1,57 @@
+@import "version.inc";
+@import "outercurve.inc";
+
+#define { 
+    flavor: "${comp??vc10}"; 
+    arch : "${plat??x86}";
+}
+
+package {
+    name: "libltdl-dev[${flavor}]";
+    version: "${package-version}";
+    arch : "${arch}";
+
+    display-name: "libltdl Dev Library";
+    location: "http://coapp.org/repository/${OutputFilename}";
+
+    feed: "http://coapp.org/repository/packages.atom.xml";
+    publisher: "CoApp Project";
+}
+
+license[LGPL2] {
+	license: "..\libltdl\COPYING.LIB";
+    license-url: "http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html";
+    license-type: "LGPL";
+}
+
+metadata {  
+    summary: "libltdl";
+    description: @"Libltdl provides a consistent interface for dynamically loading libraries on various platforms.";
+    author-version : "${author-version}";
+    bug-tracker: "https://github.com/coapp-packages/libtool/issues";
+    stability : "0";
+    licenses : {
+        LGPL2
+    };
+}
+
+requires {
+    package: "libltdl[${flavor}]-${package-version}-${Package.Architecture}-${Package.PublicKeyToken}";
+    package: "libltdl-dev-common-${package-version}-any-${Package.PublicKeyToken}";
+}
+
+developer-library[libltdl[${flavor}]] {
+    libraries : {
+        libs,
+    };
+}
+
+files[libs] {
+    root: @"libtool\Release";
+
+    include: {
+        "libltdl.lib",
+    };
+
+    trim-path: all;
+};

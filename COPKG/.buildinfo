@@ -42,11 +42,12 @@ package {
 	build-command: @"
         cd COPKG
         autopackage libltdl-dev-common.autopkg || goto failed
-        autopackage libltdl.autopkg || goto failed
+        autopackage libltdl.autopkg libltdl-dev.autopkg || goto failed
 	";
 
 	targets: {
 		@"COPKG\libltdl[vc10]-${package-version}-x86.msi",
+		@"COPKG\libltdl-dev[vc10]-${package-version}-x86.msi",
 		@"COPKG\libltdl-dev-common-${package-version}-any.msi",
 	};
 
