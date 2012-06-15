@@ -1,5 +1,6 @@
 @import "version.inc";
 @import "outercurve.inc";
+@import "compat.inc";
 
 package {
     name: "libltdl-dev-common";
